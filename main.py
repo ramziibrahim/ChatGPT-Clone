@@ -1,7 +1,7 @@
 import streamlit as st #using streamlit for UI
 #Creating the GUI
 from streamlit_chat import message
-from dotenv import load_dotenv # basically allows your application to use information from the .env file
+from dotenv import load_dotenv # basically allows your application to use information from the .env file (retrieves your openAi API key)
 import os
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import (
@@ -12,7 +12,7 @@ from langchain.schema import (
 
 
 def init():
-    load_dotenv() #all you have to do is run this at beginning of application to make it work
+    load_dotenv()
 
     # test that the API key exists
     if os.getenv("OPENAI_API_KEY") is None or os.getenv("OPENAI_API_KEY") == "":
@@ -22,14 +22,14 @@ def init():
         print("OPENAI_API_KEY is set")
 
     st.set_page_config(
-        page_title="Your own ChatGPT", #needs a comma when adding seperate things
+        page_title="Your own ChatGPT",
         page_icon="🦾"
     )
 
 def main():
     init()
 
-    chat = ChatOpenAI(temperature = 0) #tempurature (0-1) sets the randomization of the responses [0 being low and 1 being very  random]
+    chat = ChatOpenAI(temperature = 0)
 
 
     # initialize message history
